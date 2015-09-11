@@ -53,4 +53,33 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('ProfileCtrl', function($scope, $http){
+  $http.get('http://localhost:8080/openProj')
+    .then(function(response){
+      console.log(response);
+      //$scope.openProjects =
+      // $scope.filteredProj = {}, $scope.expenditures = 0;
+      // if(response.data){
+      //   response.data.reduce(function(memo, current){
+      //     memo[current.category] ? memo[current.category].push(current) 
+      //       : memo[current.category] = [current];
+      //     return memo;
+      //   }, $scope.filteredProj);
+      //   response.data.reduce(function(memo, current){
+      //     if(!current.isActive){
+      //       $scope.expenditures += current.cost;
+      //     }
+      //     return $scope.expenditures;
+      //   });
+      // }
+      // // console.log('filtered Projects', $scope.filteredProj);
+      // $scope.accountType = appFact.category
+      // $scope.projects = response.data;
+      // appFact.projects = response.data;
+      // $scope.profile = appFact.profile;
+      // $scope.userData = appFact.userData;
+      // $state.go('index.list.overview');
+    });
 });
