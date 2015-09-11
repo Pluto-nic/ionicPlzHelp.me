@@ -59,6 +59,7 @@ angular.module('starter.controllers', [])
   $http.get('http://localhost:8080/openProj')
     .then(function(response){
       console.log(response);
+      $scope.openProjects = response.data;
       //$scope.openProjects =
       // $scope.filteredProj = {}, $scope.expenditures = 0;
       // if(response.data){
