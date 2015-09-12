@@ -1,7 +1,17 @@
 <ion-view view-title="Profile">
-  <ion-content>
+  <ion-content> 
     <h1>Profile Overview</h1>
-    <div>Recent Projects</div>
-    <!-- ng-repeat openProjects -->
+    <div>Open Projects</div>
+    <div>Title</div>
+    <div>Description</div>
+    <div ng-repeat="project in openProjects"> {{ project.title + " " + project.description }} </div>
+    
+    <div>Closed Projects</div>
+    <div>Title</div>
+    <div>Description</div>
+    <div ng-repeat="project in closedProjects"> {{ project.title + " " + project.description }} </div>
+
   </ion-content>
 </ion-view>
+
+

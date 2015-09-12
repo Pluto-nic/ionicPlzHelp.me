@@ -40,9 +40,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
-    data: {
-      requiresLogin: true
-    }
+    // data: {
+    //   requiresLogin: true
+    // }
   })
 
   .state('app.search', {
@@ -52,9 +52,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
         templateUrl: 'templates/search.html'
       }
     },
-    data: {
-      requiresLogin: true
-    }
+    // data: {
+    //   requiresLogin: true
+    // }
   })
   .state('app.profile', {
     url: '/profile',
@@ -64,9 +64,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
         controller: 'ProfileCtrl'
       }
     },
-    data: {
-      requiresLogin: true
-    }
+    // data: {
+    //   requiresLogin: true
+    // }
   })
   .state('app.settings', {
       url: '/settings',
@@ -75,9 +75,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
           templateUrl: 'templates/settings.html'
         }
       },
-      data: {
-        requiresLogin: true
-      }
+      // data: {
+      //   requiresLogin: true
+      // }
     })
     .state('app.playlists', {
       url: '/playlists',
@@ -87,9 +87,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
           controller: 'PlaylistsCtrl'
         }
       },
-      data: {
-        requiresLogin: true
-      }
+      // data: {
+      //   requiresLogin: true
+      // }
     })
     .state('app.history', {
       url: '/history',
@@ -98,9 +98,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
           templateUrl: 'templates/history.html'
         }
       },
-      data: {
-        requiresLogin: true
-      }
+      // data: {
+      //   requiresLogin: true
+      // }
     })
   .state('app.single', {
     url: '/playlists/:playlistId',
@@ -110,9 +110,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
         controller: 'PlaylistCtrl'
       }
     },
-    data: {
-      requiresLogin: true
-    }
+    // data: {
+    //   requiresLogin: true
+    // }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/search');
