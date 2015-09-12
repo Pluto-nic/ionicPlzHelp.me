@@ -83,4 +83,28 @@ angular.module('starter.controllers', [])
       // $scope.userData = appFact.userData;
       // $state.go('index.list.overview');
     });
+})
+.controller('LoginCtrl', function($scope, auth, $state, store) {
+ auth.signin({
+   authParams: {
+     // This asks for the refresh token
+     // So that the user never has to log in again
+     scope: 'openid offline_access',
+     // This is the device name
+     device: 'Mobile device'
+   },
+   // Make the widget non closeable
+   standalone: true
+ }, function(profile, token, accessToken, state, refreshToken) {
+         // Login was successful
+   // We need to save the information from the login
+   store.set('profile', profile);
+   store.set('token', token);
+   store.set('refreshToken', refreshToken);
+   $state.go('app.profile');
+ }, function(error) {
+   // Oops something went wrong during login:
+   console.log("There was an error logging in", error);
+ });
 });
+

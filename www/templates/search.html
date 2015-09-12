@@ -1,6 +1,16 @@
 <ion-view view-title="Search">
-  <ion-content>
-    <h1>Search</h1>
-    <input>
+  <ion-content id="search">
+    <h1>Find Your Contractor</h1>
+    <div><input ng-model='jobName' placeholder='Name Your Job'></div>
+    <div><input ng-model='jobDescription' placeholder='Describe Your Job'></div>
+    <div><input ng-model='date' placeholder="Date"></div>
+    <div><input ng-model='address' placeholder="Address"></div>
+    <div><select ng-model='jobType'>
+      <option value="plumbing">Plumbing</option>
+      <option value="electrical">Electrical</option>
+      <option value="cleaning">Cleaning</option>
+      <option value="general handyman">General Handyman</option>
+    </select></div>
+    <button type="button">Submit</button>
   </ion-content>
 </ion-view>
