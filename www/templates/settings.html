@@ -1,5 +1,17 @@
 <ion-view view-title="Settings">
   <ion-content>
     <h1>Settings</h1>
+    <div>
+      <div>Personal Information</div>
+      <div><input ng-model='firstName' placeholder='First Name'></div>
+      <div><input ng-model='lastName' placeholder='Last Name'></div>
+      <button type="button">Save Changes</button>
+
+      <div>Change Password</div>
+      <div><input ng-model='currentPassword' placeholder='Current Password'></div>
+      <div><input ng-model='newPassword' placeholder='New Password'></div>
+      <button type="button">Change Password</button>
+
+    </div>
   </ion-content>
 </ion-view>

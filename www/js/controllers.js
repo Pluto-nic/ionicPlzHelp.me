@@ -59,27 +59,35 @@ angular.module('starter.controllers', [])
   $http.get('http://localhost:8080/openProj')
     .then(function(response){
       console.log(response);
-      //$scope.openProjects =
-      // $scope.filteredProj = {}, $scope.expenditures = 0;
-      // if(response.data){
-      //   response.data.reduce(function(memo, current){
-      //     memo[current.category] ? memo[current.category].push(current) 
-      //       : memo[current.category] = [current];
-      //     return memo;
-      //   }, $scope.filteredProj);
-      //   response.data.reduce(function(memo, current){
-      //     if(!current.isActive){
-      //       $scope.expenditures += current.cost;
-      //     }
-      //     return $scope.expenditures;
-      //   });
-      // }
-      // // console.log('filtered Projects', $scope.filteredProj);
-      // $scope.accountType = appFact.category
-      // $scope.projects = response.data;
-      // appFact.projects = response.data;
-      // $scope.profile = appFact.profile;
-      // $scope.userData = appFact.userData;
-      // $state.go('index.list.overview');
+      $scope.openProjects = response.data;
     });
+  $http.get('http://localhost:8080/closedProj')
+    .then(function(response){
+      console.log(response);
+      $scope.closedProjects = response.data;
+    });
+})
+.controller('LoginCtrl', function($scope, auth, $state, store) {
+ auth.signin({
+   authParams: {
+     // This asks for the refresh token
+     // So that the user never has to log in again
+     scope: 'openid offline_access',
+     // This is the device name
+     device: 'Mobile device'
+   },
+   // Make the widget non closeable
+   standalone: true
+ }, function(profile, token, accessToken, state, refreshToken) {
+         // Login was successful
+   // We need to save the information from the login
+   store.set('profile', profile);
+   store.set('token', token);
+   store.set('refreshToken', refreshToken);
+   $state.go('app.profile');
+ }, function(error) {
+   // Oops something went wrong during login:
+   console.log("There was an error logging in", error);
+ });
 });
+
