@@ -1,4 +1,12 @@
 {
   "name": "ionic",
-  "app_id": "a117a349"
+  "app_id": "a117a349",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }
