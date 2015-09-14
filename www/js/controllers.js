@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -41,6 +41,41 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('ProfileCtrl', function($scope, $http){
+  $http.get('http://localhost:8080/openProj')
+    .then(function(response){
+      console.log(response);
+      $scope.openProjects = response.data;
+    });
+  $http.get('http://localhost:8080/closedProj')
+    .then(function(response){
+      console.log(response);
+      $scope.closedProjects = response.data;
+    });
+})
+/////////////////////
+//for some reason, the order of these controllers matter... LoginCtrl must go last
+/////////////////////
+.controller('SearchCtrl', function($scope, $http, $state){
+  $scope.search = function(jobName, jobDescription, date, address, jobType){
+    $scope.data = {title: jobName, description: jobDescription, category: jobType};
+    $http.post('http://localhost:8080/createProject', $scope.data)
+      .then(function(response){
+        console.log(response);
+        $scope.search.jobName = null;
+        $scope.search.jobDescription = null;
+        $scope.search.date = null;
+        $scope.search.address = null;
+        $scope.search.jobType = null;
+      }, function(response){
+        console.log('ERROR');
+      });
+  }
+  $scope.clear = function(){
+    $scope.search.jobName = null;
+  }
+})
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
@@ -55,18 +90,6 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('ProfileCtrl', function($scope, $http){
-  $http.get('http://localhost:8080/openProj')
-    .then(function(response){
-      console.log(response);
-      $scope.openProjects = response.data;
-    });
-  $http.get('http://localhost:8080/closedProj')
-    .then(function(response){
-      console.log(response);
-      $scope.closedProjects = response.data;
-    });
-})
 .controller('LoginCtrl', function($scope, auth, $state, store) {
  auth.signin({
    authParams: {
@@ -88,6 +111,6 @@ angular.module('starter.controllers', [])
  }, function(error) {
    // Oops something went wrong during login:
    console.log("There was an error logging in", error);
- });
-});
+ })
 
+});
