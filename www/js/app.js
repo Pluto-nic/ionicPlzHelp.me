@@ -49,9 +49,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
     url: '/search',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/search.html',
+        controller: 'SearchCtrl'
       }
     },
+    cache: false,
     // data: {
     //   requiresLogin: true
     // }
@@ -64,6 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
         controller: 'ProfileCtrl'
       }
     },
+    cache: false,
     // data: {
     //   requiresLogin: true
     // }
