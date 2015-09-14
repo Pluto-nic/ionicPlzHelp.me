@@ -3,17 +3,28 @@
 </ion-nav-bar>
   <ion-content>
     <h1>Settings</h1>
-    <div>
-      <div>Personal Information</div>
-      <div><input ng-model='firstName' placeholder='First Name'></div>
-      <div><input ng-model='lastName' placeholder='Last Name'></div>
-      <button type="button">Save Changes</button>
-
-      <div>Change Password</div>
-      <div><input ng-model='currentPassword' placeholder='Current Password'></div>
-      <div><input ng-model='newPassword' placeholder='New Password'></div>
-      <button type="button">Change Password</button>
-
+    <div class="list">
+      Personal Information
+      <label class="item item-input">
+        <input type="text" placeholder="First Name">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Last Name">
+      </label>
+      <button class="button button-block button-energized">
+        Save Changes
+      </button>
+      Change Password
+      <label class="item item-input">
+        <input type="text" placeholder="Current Password">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="New Password">
+      </label>
     </div>
+    <button class="button button-block button-energized">
+      Change password
+    </button>
+
   </ion-content>
 </ion-view>
