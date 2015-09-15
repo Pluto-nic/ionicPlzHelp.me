@@ -3,15 +3,22 @@
 </ion-nav-bar>
   <ion-content> 
     <h1>Profile Overview</h1>
-    <div>Open Projects</div>
-    <div>Title</div>
-    <div>Description</div>
-    <div ng-repeat="project in openProjects"> {{ project.title + " " + project.description }} </div>
-    
-    <div>Closed Projects</div>
-    <div>Title</div>
-    <div>Description</div>
-    <div ng-repeat="project in closedProjects"> {{ project.title + " " + project.description }} </div>
+    <div class="list">
+      <div class="item item-energized item-divider">
+        Open Projects
+      </div>
+      <a ng-repeat="project in openProjects" class="item" href="#">
+        {{ project.title }} 
+      </a>
+    </div>
+    <div class="list">
+      <div class="item item-energized item-divider">
+        Closed Projects
+      </div>
+      <a ng-repeat="project in closedProjects" class="item" href="#">
+        {{ project.title }} 
+      </a>
+    </div>
   </ion-content>
 </ion-view>
 
