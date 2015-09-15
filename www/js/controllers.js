@@ -90,7 +90,27 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('LoginCtrl', function($scope, auth, $state, store) {
+.controller('settingsCtrl',['$scope','$stateParams', 'appFact', '$http', function($scope, $stateParams, $http, appFact){
+  $scope.updateUser = function(){
+    if($scope.accountType === 'Client'){
+      appFact.userData.firstName = $scope.settings.firstName || appFact.userData.firstName;
+      appFact.userData.lastName  = $scope.settings.lastName  || appFact.userData.lastName;
+      appFact.userData.email     = $scope.settings.email     || appFact.userData.email;
+      appFact.userData.address   = $scope.settings.address   || appFact.userData.address;
+      appFact.userData.city      = $scope.settings.city      || appFact.userData.city;
+      appFact.userData.state     = $scope.settings.state     || appFact.userData.state;
+      appFact.userData.zipcode   = $scope.settings.zipcode   || appFact.userData.zipcode;
+      appFact.userData.phone     = $scope.settings.phone     || appFact.userData.phone;
+      $http.post('/createUser', appFact.userData)
+        .then(function(response){
+          $state.go('index.list.overview');
+        });
+    }
+  };
+}])
+
+
+.controller('LoginCtrl', function($scope, auth, $state, store, appFact, $http) {
  auth.signin({
    authParams: {
      // This asks for the refresh token
@@ -105,6 +125,12 @@ angular.module('starter.controllers', [])
          // Login was successful
    // We need to save the information from the login
    store.set('profile', profile);
+
+  $http.get('http://localhost:8080/clientInfo', {user_id: profile.user_id})
+    .then(function(res){
+      appFact.userData = res.data;
+    }).catch(function(err){console.log(err)});
+
    store.set('token', token);
    store.set('refreshToken', refreshToken);
    $state.go('app.profile');

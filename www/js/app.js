@@ -24,6 +24,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
   });
 })
 
+.factory('appFact', function appFactory(){
+  return {};
+})
 
 .config(function($stateProvider, $urlRouterProvider, authProvider, $httpProvider,
   jwtInterceptorProvider) {
