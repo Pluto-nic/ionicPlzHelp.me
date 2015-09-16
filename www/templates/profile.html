@@ -8,7 +8,7 @@
         Open Projects
       </div>
       <a ng-repeat="project in openProjects" class="item" href="#">
-        {{ project.title }} 
+        {{ project.name }} - {{ project.description }} 
       </a>
     </div>
     <div class="list">
@@ -16,7 +16,7 @@
         Closed Projects
       </div>
       <a ng-repeat="project in closedProjects" class="item" href="#">
-        {{ project.title }} 
+        {{ project.name }} - {{ project.description }} 
       </a>
     </div>
   </ion-content>

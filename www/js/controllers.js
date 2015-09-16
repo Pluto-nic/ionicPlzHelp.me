@@ -41,13 +41,14 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ProfileCtrl', function($scope, $http){
-  $http.get('http://localhost:8080/openProj')
+.controller('ProfileCtrl', function($scope, $http, appFact){
+  console.log(appFact);
+  $http.post('http://www.plzHelp.me/clientOpenProj', {user_id: appFact.profile.user_id})
     .then(function(response){
       console.log(response);
       $scope.openProjects = response.data;
     });
-  $http.get('http://localhost:8080/closedProj')
+  $http.post('http://www.plzHelp.me/closedProj', {user_id: appFact.profile.user_id})
     .then(function(response){
       console.log(response);
       $scope.closedProjects = response.data;
@@ -56,17 +57,16 @@ angular.module('starter.controllers', [])
 /////////////////////
 //for some reason, the order of these controllers matter... LoginCtrl must go last
 /////////////////////
-.controller('SearchCtrl', function($scope, $http, $state){
-  $scope.search = function(jobName, jobDescription, date, address, jobType){
-    $scope.data = {title: jobName, description: jobDescription, category: jobType};
-    $http.post('http://localhost:8080/createProject', $scope.data)
+.controller('SearchCtrl', function($scope, $http, $state, appFact){
+  $scope.search = function(jobName, jobDescription, cost, jobType){
+    $scope.data = {name: jobName, description: jobDescription, category: jobType, cost: cost, ClientUserId: appFact.profile.user_id};
+    $http.post('http://plzHelp.me/createProject', $scope.data)
       .then(function(response){
         console.log(response);
         $scope.search.jobName = null;
         $scope.search.jobDescription = null;
-        $scope.search.date = null;
-        $scope.search.address = null;
         $scope.search.jobType = null;
+        $scope.search.cost = null;
       }, function(response){
         console.log('ERROR');
       });
@@ -90,7 +90,7 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('settingsCtrl',['$scope','$stateParams', 'appFact', '$http', function($scope, $stateParams, $http, appFact){
+.controller('settingsCtrl',['$scope','$stateParams', 'appFact', '$http', function($scope, $stateParams, appFact, $http){
   $scope.updateUser = function(){
     if($scope.accountType === 'Client'){
       appFact.userData.firstName = $scope.settings.firstName || appFact.userData.firstName;
@@ -101,10 +101,13 @@ angular.module('starter.controllers', [])
       appFact.userData.state     = $scope.settings.state     || appFact.userData.state;
       appFact.userData.zipcode   = $scope.settings.zipcode   || appFact.userData.zipcode;
       appFact.userData.phone     = $scope.settings.phone     || appFact.userData.phone;
-      $http.post('/createUser', appFact.userData)
-        .then(function(response){
-          $state.go('index.list.overview');
-        });
+      appFact.userData.smsOption = $scope.settings.smsOption || appFact.userData.smsOption;
+      appFact.userData.gravatar  = appFact.profile.gravatar;
+      appFact.userData.user_id   = appFact.profile.user_id;
+     $http.post('/createUser', appFact.userData)
+      .then(function(response){
+         $state.go('index.list.overview');
+      });
     }
   };
 }])
@@ -126,7 +129,8 @@ angular.module('starter.controllers', [])
    // We need to save the information from the login
    store.set('profile', profile);
 
-  $http.get('http://localhost:8080/clientInfo', {user_id: profile.user_id})
+      appFact.profile  = profile;
+  $http.post('http://localhost:8080/clientInfo', {user_id: profile.user_id})
     .then(function(res){
       appFact.userData = res.data;
     }).catch(function(err){console.log(err)});

@@ -6,6 +6,9 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'auth0', 
   'angular-storage', 'angular-jwt'])
+.factory('appFact', function appFactory(){
+  return {};
+})
 
 .run(function($ionicPlatform, auth) {
   auth.hookEvents();
@@ -24,9 +27,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
   });
 })
 
-.factory('appFact', function appFactory(){
-  return {};
-})
 
 .config(function($stateProvider, $urlRouterProvider, authProvider, $httpProvider,
   jwtInterceptorProvider) {
@@ -43,9 +43,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
-    // data: {
-    //   requiresLogin: true
-    // }
+    data: {
+      requiresLogin: true
+    }
   })
 
   .state('app.search', {
@@ -57,9 +57,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
       }
     },
     cache: false,
-    // data: {
-    //   requiresLogin: true
-    // }
+    data: {
+      requiresLogin: true
+    }
   })
   .state('app.profile', {
     url: '/profile',
@@ -70,9 +70,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
       }
     },
     cache: false,
-    // data: {
-    //   requiresLogin: true
-    // }
+    data: {
+      requiresLogin: true
+    }
   })
   .state('app.settings', {
       url: '/settings',
@@ -81,9 +81,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
           templateUrl: 'templates/settings.html'
         }
       },
-      // data: {
-      //   requiresLogin: true
-      // }
+      data: {
+        requiresLogin: true
+      }
     })
     .state('app.playlists', {
       url: '/playlists',
@@ -104,9 +104,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth0',
           templateUrl: 'templates/history.html'
         }
       },
-      // data: {
-      //   requiresLogin: true
-      // }
+      data: {
+        requiresLogin: true
+      }
     })
   .state('app.single', {
     url: '/playlists/:playlistId',

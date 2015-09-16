@@ -10,25 +10,31 @@
       <label class="item item-input">
         <input ng-model='search.jobDescription' type="text" placeholder="Describe Your Job">
       </label>
-      <label class="item item-input">
-        <input ng-model='search.date' type="text" placeholder="Date">
-      </label>
-      <label class="item item-input">
-        <input ng-model='search.address' type="text" placeholder="Address">
+       <label class="item item-input">
+        <input ng-model='search.cost' type="text" placeholder="$xxx">
       </label>
       <label class="item item-input item-select">
         <div class="input-label">
         Type of Job
         </div>
         <select ng-model='search.jobType'>
+          <option>Tutoring</option>
+          <option>Electrical</option>
+          <option>Visual Design</option>
           <option>Plumbing</option>
-          <option selected>Electrical</option>
+          <option>Interior Decorating</option>
           <option>Cleaning</option>
+          <option>Legal/Paralegal</option>
+          <option>Counseling/Life Coaching/Motivation</option>
+          <option>Language Learning</option>
+          <option>Music Lessons</option>
+          <option>Fitness/Wellness</option>
+          <option selected='selected'>General</option>
         </select>
       </label>
     </div>
 
-    <button class="button button-block button-energized" ng-click='search(search.jobName, search.jobDescription, search.date, search.address, search.jobType)'>
+    <button class="button button-block button-energized" ng-click='search(search.jobName, search.jobDescription, search.cost, search.jobType)'>
       Post
     </button>
 
