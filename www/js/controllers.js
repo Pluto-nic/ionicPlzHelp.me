@@ -60,7 +60,7 @@ angular.module('starter.controllers', [])
 .controller('SearchCtrl', function($scope, $http, $state, appFact){
   $scope.search = function(jobName, jobDescription, cost, jobType){
     $scope.data = {name: jobName, description: jobDescription, category: jobType, cost: cost, ClientUserId: appFact.profile.user_id};
-    $http.post('http://plzHelp.me/createProject', $scope.data)
+    $http.post('http://www.plzHelp.me/createProject', $scope.data)
       .then(function(response){
         console.log(response);
         $scope.search.jobName = null;
