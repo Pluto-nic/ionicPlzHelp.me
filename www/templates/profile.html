@@ -1,0 +1,25 @@
+<ion-view view-title="Profile">
+<ion-nav-bar class="bar-dark"> 
+</ion-nav-bar>
+  <ion-content> 
+    <h1>Profile Overview</h1>
+    <div class="list">
+      <div class="item item-energized item-divider">
+        Open Projects
+      </div>
+      <a ng-repeat="project in openProjects" class="item" href="#">
+        {{ project.name }} - {{ project.description }} 
+      </a>
+    </div>
+    <div class="list">
+      <div class="item item-energized item-divider">
+        Closed Projects
+      </div>
+      <a ng-repeat="project in closedProjects" class="item" href="#">
+        {{ project.name }} - {{ project.description }} 
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
+
+
