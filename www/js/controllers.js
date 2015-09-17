@@ -48,7 +48,7 @@ angular.module('starter.controllers', [])
       console.log(response);
       $scope.openProjects = response.data;
     });
-  $http.post('http://www.plzHelp.me/closedProj', {user_id: appFact.profile.user_id})
+  $http.post('http://www.plzHelp.me/clientClosedProj', {user_id: appFact.profile.user_id})
     .then(function(response){
       console.log(response);
       $scope.closedProjects = response.data;
